@@ -1,7 +1,6 @@
 package censusanalyser;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.Assert; import org.junit.Test;
 
 public class CensusAnalyserTest {
 
@@ -15,5 +14,4 @@ public class CensusAnalyserTest {
             Assert.assertEquals(29,numOfRecords);
         } catch (CensusAnalyserException e) { }
     }
-
 }

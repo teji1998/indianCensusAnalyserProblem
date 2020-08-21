@@ -1,7 +1,8 @@
 package censusanalyser;
 
-import com.customCSV.CSVBuilderException;
-import com.customCSV.ICSVBuilder;
+import csvbuilder.CSVBuilderException;
+import csvbuilder.CSVBuilderFactory;
+import csvbuilder.ICSVBuilder;
 
 import java.io.IOException;
 import java.io.Reader;

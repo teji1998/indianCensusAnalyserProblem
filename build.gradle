@@ -21,3 +21,12 @@ dependencies {
 dependencies {
     compile 'com.opencsv:opencsv:4.0'
 }
+
+dependencies {
+    compile(files("./lib/customCSV.main.jar"))
+}
+
+dependencies {
+    compile(files("./lib/commoncsv.main.jar"))
+}
+

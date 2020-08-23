@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="censusanalyser.CensusAnalyserTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-08-19T03:10:09" hostname="HPL5" time="2.235">
+<testsuite name="censusanalyser.CensusAnalyserTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2020-08-23T12:32:41" hostname="HPL5" time="3.726">
   <properties/>
-  <testcase name="givenIndianCensusCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="2.235"/>
+  <testcase name="givenIndianCensusDataCSVFile_whenWithWrongHeaders_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="1.794"/>
+  <testcase name="givenIndianCensusDataCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="1.446"/>
+  <testcase name="givenIndianStateCodeCSVFile_whenWithWrongDelimiters_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.13"/>
+  <testcase name="givenIndianCensusDataCSVFile_whenWithWrongFileType_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.16"/>
+  <testcase name="givenIndianStateCodeCSVFile_whenWithWrongFileType_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.02"/>
+  <testcase name="givenIndiaStateCodeCSVFileReturnsCorrectRecords" classname="censusanalyser.CensusAnalyserTest" time="0.029"/>
+  <testcase name="givenIndianCensusDataCSVFile_whenWithWrongDelimiters_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.036"/>
+  <testcase name="givenIndianStateCodeCSVFile_whenWithWrongPath_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.003"/>
+  <testcase name="givenIndianCensusDataCSVFile_whenWithWrongPath_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.001"/>
+  <testcase name="givenIndianStateCodeCSVFile_whenWithWrongHeaders_shouldThrowException" classname="censusanalyser.CensusAnalyserTest" time="0.092"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

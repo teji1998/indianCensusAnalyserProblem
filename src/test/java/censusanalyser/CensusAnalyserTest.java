@@ -4,7 +4,6 @@ import org.junit.Assert; import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class CensusAnalyserTest {
-
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH =  "./src/main/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_TYPE_PATH =  "./src/test/resources/IndiaStateCensusData.txt";
@@ -15,7 +14,6 @@ public class CensusAnalyserTest {
     private static final String WRONG_STATE_CODE_CSV_FILE_TYPE_PATH =  "./src/test/resources/IndiaStateCode.txt";
     private static final String INVALID_STATE_CODE_CSV_DELIMITER_FILE_PATH =  "./src/test/resources/invalidDelimitersIndiaStateCode.csv";
     private static final String INVALID_STATE_C0DE_CSV_HEADER_FILE_PATH =  "./src/test/resources/invalidHeadersIndiaStateCode.csv";
-
 
     //To obtain the number of record
     @Test

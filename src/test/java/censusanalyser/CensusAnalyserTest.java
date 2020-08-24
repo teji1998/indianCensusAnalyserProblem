@@ -93,6 +93,7 @@ public class CensusAnalyserTest {
         }
     }
 
+    //To sort the states in the descending order of population
     @Test
     public void givenIndianCensusCSVFile_whenSortedByPopulation_shouldReturnSortedResult() {
         try {
@@ -106,7 +107,19 @@ public class CensusAnalyserTest {
         }
     }
 
-
+    //To sort the states in the descending order of the population density
+    @Test
+    public void givenIndianCensusCSVFile_whenSortedByPopulationDensity_shouldReturnSortedResult() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String stateWisePopulationDensitySortedCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(stateWisePopulationDensitySortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals(1102, censusCSV[0].densityPerSqKm);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
+    }
 
     //To obtain the number of record
     @Test

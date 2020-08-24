@@ -87,6 +87,7 @@ public class CensusAnalyserTest {
             String stateWiseSortedCensusData = censusAnalyser.getStateWiseSortedCensusData();
             IndiaCensusCSV[] censusCSV = new Gson().fromJson(stateWiseSortedCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Andhra Pradesh", censusCSV[0].state);
+            Assert.assertEquals("West Bengal", censusCSV[censusCSV.length - 1].state);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
         }
@@ -152,5 +153,18 @@ public class CensusAnalyserTest {
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_OR_DELIMITER_OR_HEADER, e.type);
         }
+    }
+
+    //To sort state code alphabetically
+    @Test
+    public void givenIndiaStateCodeData_whenSortedByStateCode_shouldReturnSortedResult() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+            String stateCodeWiseSortedData = censusAnalyser.getStateCodeWiseSortedData();
+            IndiaStateCodeCSV[] censusCSV = new Gson().fromJson(stateCodeWiseSortedData, IndiaStateCodeCSV[].class);
+            Assert.assertEquals("AD", censusCSV[0].state);
+            Assert.assertEquals("WB", censusCSV[censusCSV.length - 1].state);
+        } catch (CensusAnalyserException e) { }
     }
 }

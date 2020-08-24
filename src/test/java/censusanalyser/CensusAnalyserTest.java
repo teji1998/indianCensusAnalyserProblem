@@ -121,6 +121,20 @@ public class CensusAnalyserTest {
         }
     }
 
+    //To sort the states in the descending order of their areas
+    @Test
+    public void givenIndianCensusCSVFile_whenSortedByArea_shouldReturnSortedResult() {
+        try {
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            String areaWiseSortedCensusData = censusAnalyser.getStateAreaWiseSortedCensusData();
+            IndiaCensusCSV[] censusCSV = new Gson().fromJson(areaWiseSortedCensusData, IndiaCensusCSV[].class);
+            Assert.assertEquals(342239, censusCSV[0].areaInSqKm);
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
+    }
+
     //To obtain the number of record
     @Test
     public void givenIndiaStateCodeCSVFileReturnsCorrectRecords() {

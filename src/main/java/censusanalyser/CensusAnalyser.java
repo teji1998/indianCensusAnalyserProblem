@@ -60,7 +60,6 @@ public class CensusAnalyser {
         }
     }
 
-
     public int loadUSCensusData(String csvFilePath) throws CensusAnalyserException {
         try {
             Reader reader = Files.newBufferedReader(Paths.get(csvFilePath));
@@ -82,7 +81,7 @@ public class CensusAnalyser {
     }
 
     public String getStateWiseSortedCensusData() throws CensusAnalyserException {
-        if (censusMap == null || censusMap.size() == 0) {
+        if ( censusMap == null || censusMap.size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.state);
@@ -93,7 +92,7 @@ public class CensusAnalyser {
     }
 
     public String getPopulationWiseSortedCensusData() throws CensusAnalyserException {
-        if (censusMap == null || censusMap.size() == 0) {
+        if ( censusMap == null || censusMap.size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.population );
@@ -126,7 +125,7 @@ public class CensusAnalyser {
     }
 
     public String getStateCodeWiseSortedData() throws CensusAnalyserException {
-        if (censusMap == null || censusMap.size() == 0) {
+        if ( censusMap == null || censusMap.size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> censusComparator = Comparator.comparing(census -> census.stateCode);
@@ -137,7 +136,7 @@ public class CensusAnalyser {
     }
 
     public String getUSCensusStateWiseSortedData() throws CensusAnalyserException {
-        if (censusMap  == null || censusMap .size() == 0) {
+        if ( censusMap  == null || censusMap .size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.state);
@@ -148,7 +147,7 @@ public class CensusAnalyser {
     }
 
     public String getUSCensusPopulationWiseSortedData() throws CensusAnalyserException {
-        if (censusMap  == null || censusMap .size() == 0) {
+        if ( censusMap  == null || censusMap .size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.population);
@@ -159,7 +158,7 @@ public class CensusAnalyser {
     }
 
     public String getUSCensusPopulationDensityWiseSortedData() throws CensusAnalyserException {
-        if (censusMap  == null || censusMap .size() == 0) {
+        if ( censusMap  == null || censusMap .size() == 0 ) {
              throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.populationDensity);
@@ -169,7 +168,7 @@ public class CensusAnalyser {
         return sortedUSCensusByPopulationDensity;
     }
     public String getUSCensusAreaWiseSortedData() throws CensusAnalyserException {
-        if (censusMap  == null || censusMap .size() == 0) {
+        if ( censusMap  == null || censusMap .size() == 0 ) {
             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
         }
         Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.totalArea);
@@ -178,7 +177,6 @@ public class CensusAnalyser {
         String sortedUSCensusByArea = new Gson().toJson(censusDAOList);
         return sortedUSCensusByArea;
     }
-
 
     private static <E> List<E> sort( Comparator<E> censusComparator, List<E> censusList ) {
         for ( int i = 0; i < censusList.size()-1; i++ ) {
@@ -207,7 +205,6 @@ public class CensusAnalyser {
         }
         return censusList;
     }
-
 }
 
 

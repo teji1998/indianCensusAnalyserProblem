@@ -20,7 +20,7 @@ public class IndiaCensusCSV {
         return "IndiaCensusCSV{" +
                 "state='" + state + '\'' +
                 ", population=" + population +
-                ", areaInAqKm=" + areaInSqKm +
+                ", areaInSqKm=" + areaInSqKm +
                 ", densityPerSqKm=" + densityPerSqKm +
                 '}';
     }

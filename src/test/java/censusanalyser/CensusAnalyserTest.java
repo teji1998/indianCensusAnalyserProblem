@@ -139,11 +139,11 @@ public class CensusAnalyserTest {
     @Test
     public void givenIndiaStateCodeCSVFileReturnsCorrectRecords() {
         try{
-                CensusAnalyser censusAnalyser = new CensusAnalyser();
-                int numberOfRecords = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
-                Assert.assertEquals(37, numberOfRecords);
-            } catch (CensusAnalyserException e) {
-            }
+            CensusAnalyser censusAnalyser = new CensusAnalyser();
+            censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            int numberOfRecords = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+            Assert.assertEquals(29, numberOfRecords);
+        } catch (CensusAnalyserException e) { }
     }
 
     //To test for a wrong file path
@@ -206,7 +206,7 @@ public class CensusAnalyserTest {
             censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
             String stateCodeWiseSortedData = censusAnalyser.getStateCodeWiseSortedData();
             IndiaStateCodeCSV[] censusCSV = new Gson().fromJson(stateCodeWiseSortedData, IndiaStateCodeCSV[].class);
-            Assert.assertEquals("AD", censusCSV[0].state);
+            Assert.assertEquals("AD", censusCSV[0].stateCode);
             Assert.assertEquals("WB", censusCSV[censusCSV.length - 1].stateCode);
         } catch (CensusAnalyserException e) {
             Assert.assertEquals(CensusAnalyserException.ExceptionType.INVALID_FILE_TYPE_OR_DELIMITER_OR_HEADER, e.type);

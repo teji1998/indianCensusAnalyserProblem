@@ -68,7 +68,7 @@ public class CensusAnalyser {
             Iterator<USCensusCSV> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, USCensusCSV.class);
             Iterable<USCensusCSV> censusCSVIterable = () -> censusCSVIterator;
             StreamSupport.stream(censusCSVIterable.spliterator(),false)
-                    .forEach(censusCSV -> censusMap.put(censusCSV.usState, new CensusDAO(censusCSV)));
+                    .forEach(censusCSV -> censusMap.put(censusCSV.state, new CensusDAO(censusCSV)));
             return this.censusMap.size();
         } catch (IOException e) {
             throw new CensusAnalyserException(e.getMessage(),
@@ -136,11 +136,41 @@ public class CensusAnalyser {
         return sortedStateCode;
     }
 
-    private static <CensusDAO> List<CensusDAO> sort( Comparator<CensusDAO> censusComparator, List<CensusDAO> censusList ) {
+    public String getUSCensusPopulationWiseSortedCensusData() throws CensusAnalyserException {
+        if (censusMap  == null || censusMap .size() == 0) {
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.population);
+        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
+        censusDAOList = sortInDescendingOrder(usCensusComparator, censusDAOList);
+        return new Gson().toJson(censusDAOList);
+    }
+
+    public String getUSCensusPopulationDensityWiseSortedCensusData() throws CensusAnalyserException {
+        if (censusMap  == null || censusMap .size() == 0) {
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.populationDensity);
+        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
+        censusDAOList = sortInDescendingOrder(usCensusComparator, censusDAOList);
+        return new Gson().toJson(censusDAOList);
+    }
+    public String getUSCensusAreaWiseSortedCensusData() throws CensusAnalyserException {
+        if (censusMap  == null || censusMap .size() == 0) {
+            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
+        }
+        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.totalArea);
+        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
+        censusDAOList = sortInDescendingOrder(usCensusComparator, censusDAOList);
+        return new Gson().toJson(censusDAOList);
+    }
+
+
+    private static <E> List<E> sort( Comparator<E> censusComparator, List<E> censusList ) {
         for ( int i = 0; i < censusList.size()-1; i++ ) {
             for ( int j =0; j< censusList.size() -i -1; j++ ) {
-                CensusDAO census1 = censusList.get(j);
-                CensusDAO census2 = censusList.get(j+1);
+                E census1 = censusList.get(j);
+                E census2 = censusList.get(j+1);
                 if ( censusComparator.compare( census1, census2 ) > 0 ){
                     censusList.set( j, census2 );
                     censusList.set( j+1, census1 );
@@ -150,11 +180,11 @@ public class CensusAnalyser {
         return censusList;
     }
 
-    private static <CensusDAO> List<CensusDAO> sortInDescendingOrder( Comparator<CensusDAO> censusComparator, List<CensusDAO> censusList ) {
+    private static <E> List<E> sortInDescendingOrder( Comparator<E> censusComparator, List<E> censusList ) {
         for ( int i = 0; i < censusList.size()-1; i++ ) {
             for ( int j =0; j< censusList.size() -i -1; j++ ) {
-                CensusDAO census1 = censusList.get(j);
-                CensusDAO census2 = censusList.get(j+1);
+                E census1 = censusList.get(j);
+                E census2 = censusList.get(j+1);
                 if ( censusComparator.compare( census1, census2 ) < 0 ){
                     censusList.set( j, census2 );
                     censusList.set( j+1, census1 );

@@ -8,10 +8,10 @@ public class USCensusCSV {
 	public String stateId;
 
 	@CsvBindByName(column = "State", required = true)
-	public String usState;
+	public String state;
 
 	@CsvBindByName(column = "Population", required = true)
-	public int usPopulation;
+	public int population;
 
 	@CsvBindByName(column = "Housing units", required = true)
 	public int housingUnits;
@@ -35,8 +35,8 @@ public class USCensusCSV {
 	public String toString() {
 		return "USCensusCSV{" +
 				"State Id='" + stateId + '\'' +
-				", State='" +  usState + '\'' +
-				", Population='" + usPopulation + '\'' +
+				", State='" +  state + '\'' +
+				", Population='" + population + '\'' +
 				", Housing units='" + housingUnits + '\'' +
 				", Total area='" + totalArea + '\'' +
 				", Water area='" + waterArea + '\'' +

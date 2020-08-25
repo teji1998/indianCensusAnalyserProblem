@@ -21,8 +21,8 @@ public class CensusAnalyserTest {
     public void givenIndianCensusDataCSVFileReturnsCorrectRecords() {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
-            int numOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
-            Assert.assertEquals(29,numOfRecords);
+            int numberOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
+            Assert.assertEquals(29,numberOfRecords);
         } catch (CensusAnalyserException e) { }
     }
 
@@ -138,11 +138,12 @@ public class CensusAnalyserTest {
     //To obtain the number of record
     @Test
     public void givenIndiaStateCodeCSVFileReturnsCorrectRecords() {
-        try {
-            CensusAnalyser censusAnalyser = new CensusAnalyser();
-            int numOfRecords = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
-            Assert.assertEquals(37,numOfRecords);
-        } catch (CensusAnalyserException e) { }
+        try{
+                CensusAnalyser censusAnalyser = new CensusAnalyser();
+                int numberOfRecords = censusAnalyser.loadIndiaStateCode(INDIA_STATE_CODE_CSV_FILE_PATH);
+                Assert.assertEquals(37, numberOfRecords);
+            } catch (CensusAnalyserException e) {
+            }
     }
 
     //To test for a wrong file path

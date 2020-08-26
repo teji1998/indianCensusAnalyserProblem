@@ -14,19 +14,27 @@ import java.util.Map;
 import java.util.stream.StreamSupport;
 
 public class CensusLoader {
-	Map<String, CensusDAO> censusMap = new HashMap<String, CensusDAO>();
 
-	public  <E> Map<String, CensusDAO> loadCensusData(Class<E> censusCSVClass, String... csvFilePath) throws CensusAnalyserException {
+	public Map<String, CensusDAO> loadCensusData(CensusAnalyser.Country country, String... csvFilePath) throws CensusAnalyserException {
+		if (country.equals(CensusAnalyser.Country.INDIA))
+			return this.loadCensusData(IndiaCensusCSV.class, csvFilePath);
+		else if (country.equals(CensusAnalyser.Country.US))
+			return this.loadCensusData(USCensusCSV.class, csvFilePath);
+		else throw new CensusAnalyserException("Invalid Country", CensusAnalyserException.ExceptionType.NOT_A_VALID_COUNTRY);
+	}
+
+	Map<String, CensusDAO> censusMap = new HashMap<String, CensusDAO>();
+	private <E> Map<String, CensusDAO> loadCensusData(Class<E> censusCSVClass, String... csvFilePath) throws CensusAnalyserException {
 		try {
 			Reader reader = Files.newBufferedReader(Paths.get(csvFilePath[0]));
 			ICSVBuilder csvBuilder = CSVBuilderFactory.createCSVBuilder();
 			Iterator<E> censusCSVIterator = csvBuilder.getCSVFileIterator(reader, censusCSVClass);
 			Iterable<E> censusCSVIterable = () -> censusCSVIterator;
-			if(censusCSVClass.getName().equals("censusanalyser.IndiaCensusCSV")){
+			if (censusCSVClass.getName().equals("censusanalyser.IndiaCensusCSV")){
 				StreamSupport.stream(censusCSVIterable.spliterator(),false)
 						.map(IndiaCensusCSV.class::cast)
 						.forEach(censusCSV -> censusMap.put(censusCSV.state, new CensusDAO(censusCSV)));
-			} else if(censusCSVClass.getName().equals("censusanalyser.USCensusCSV")){
+			} else if (censusCSVClass.getName().equals("censusanalyser.USCensusCSV")){
 				StreamSupport.stream(censusCSVIterable.spliterator(),false)
 						.map(USCensusCSV.class::cast)
 						.forEach(censusCSV -> censusMap.put(censusCSV.state, new CensusDAO(censusCSV)));

@@ -14,7 +14,7 @@ public class CensusDAO  {
 		population = indiaCensusCSV.population;
 	}
 
-	public CensusDAO(IndiaStateCodeCSV indiaStateCodeCSV){
+	public CensusDAO(IndiaStateCodeCSV indiaStateCodeCSV) {
 		stateCode = indiaStateCodeCSV.stateCode;
 	}
 

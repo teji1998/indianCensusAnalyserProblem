@@ -4,8 +4,6 @@ import com.google.gson.Gson;
 import org.junit.Assert; import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.concurrent.Callable;
-
 public class CensusAnalyserTest {
     private static final String INDIA_CENSUS_CSV_FILE_PATH = "./src/test/resources/IndiaStateCensusData.csv";
     private static final String WRONG_CSV_FILE_PATH = "./src/main/resources/IndiaStateCensusData.csv";
@@ -249,7 +247,7 @@ public class CensusAnalyserTest {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
-            String sortedCensusData = censusAnalyser.getUSCensusPopulationWiseSortedData();
+            String sortedCensusData = censusAnalyser.getPopulationWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
             Assert.assertEquals(37253956, usCensusCSV[0].population);
         } catch (CensusAnalyserException e) {
@@ -262,7 +260,7 @@ public class CensusAnalyserTest {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
-            String sortedCensusData = censusAnalyser.getUSCensusPopulationDensityWiseSortedData();
+            String sortedCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
             Assert.assertEquals("District of Columbia", usCensusCSV[0].state);
         } catch (CensusAnalyserException e) {
@@ -275,7 +273,7 @@ public class CensusAnalyserTest {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
-            String usCensusData = censusAnalyser.getUSCensusAreaWiseSortedData();
+            String usCensusData = censusAnalyser.getStateAreaWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(usCensusData, USCensusCSV[].class);
             Assert.assertEquals(1723338.01, usCensusCSV[0].totalArea, 1);
         } catch (CensusAnalyserException e) {
@@ -287,7 +285,7 @@ public class CensusAnalyserTest {
         try {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             censusAnalyser.loadUSCensusData(US_CENSUS_CSV_FILE_PATH);
-            String usCensusData = censusAnalyser.getUSCensusPopulationDensityWiseSortedData();
+            String usCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
             USCensusCSV[] usCensusCSV =  new Gson().fromJson(usCensusData, USCensusCSV[].class);
             Assert.assertEquals("District of Columbia", usCensusCSV[0].state);
             censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);

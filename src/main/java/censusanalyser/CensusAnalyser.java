@@ -146,38 +146,6 @@ public class CensusAnalyser {
         return sortedUSCensusByState;
     }
 
-    public String getUSCensusPopulationWiseSortedData() throws CensusAnalyserException {
-        if ( censusMap  == null || censusMap .size() == 0 ) {
-            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-        }
-        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.population);
-        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
-        this.sortInDescendingOrder(usCensusComparator, censusDAOList);
-        String sortedUSCensusByPopulation = new Gson().toJson(censusDAOList);
-        return sortedUSCensusByPopulation;
-    }
-
-    public String getUSCensusPopulationDensityWiseSortedData() throws CensusAnalyserException {
-        if ( censusMap  == null || censusMap .size() == 0 ) {
-             throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-        }
-        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.populationDensity);
-        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
-        this.sortInDescendingOrder(usCensusComparator, censusDAOList);
-        String sortedUSCensusByPopulationDensity = new Gson().toJson(censusDAOList);
-        return sortedUSCensusByPopulationDensity;
-    }
-    public String getUSCensusAreaWiseSortedData() throws CensusAnalyserException {
-        if ( censusMap  == null || censusMap .size() == 0 ) {
-            throw new CensusAnalyserException("No Census Data", CensusAnalyserException.ExceptionType.NO_CENSUS_DATA);
-        }
-        Comparator<CensusDAO> usCensusComparator = Comparator.comparing(census -> census.totalArea);
-        List<CensusDAO> censusDAOList = censusMap.values().stream().collect(Collectors.toList());
-        this.sortInDescendingOrder(usCensusComparator, censusDAOList);
-        String sortedUSCensusByArea = new Gson().toJson(censusDAOList);
-        return sortedUSCensusByArea;
-    }
-
     private static <E> List<E> sort( Comparator<E> censusComparator, List<E> censusList ) {
         for ( int i = 0; i < censusList.size()-1; i++ ) {
             for ( int j =0; j< censusList.size() -i -1; j++ ) {

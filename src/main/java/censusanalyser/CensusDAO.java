@@ -1,7 +1,6 @@
 package censusanalyser;
 
 public class CensusDAO  {
-
 	public String stateCode;
 	public String state;
 	public int population;
@@ -25,7 +24,6 @@ public class CensusDAO  {
 		population = usCensusCSV.population;
 		populationDensity = usCensusCSV.populationDensity;
 		totalArea = usCensusCSV.totalArea;
-
 	}
 }
 

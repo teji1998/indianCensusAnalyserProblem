@@ -24,8 +24,7 @@ public class CensusAnalyserTest {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             int numberOfRecords = censusAnalyser.loadIndiaCensusData(INDIA_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(29, numberOfRecords);
-        } catch (CensusAnalyserException e) {
-        }
+        } catch (CensusAnalyserException e) { }
     }
 
     //To test for a wrong file path
@@ -293,7 +292,7 @@ public class CensusAnalyserTest {
             String indiaCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
             IndiaCensusCSV[] indiaCensusCSV =  new Gson().fromJson(indiaCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Bihar", indiaCensusCSV[0].state);
-        }catch (CensusAnalyserException e ) { }
+        } catch (CensusAnalyserException e ) { }
     }
 
 }

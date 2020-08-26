@@ -143,8 +143,7 @@ public class CensusAnalyserTest {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             int numberOfRecords = censusAnalyser.loadCensusData(CensusAnalyser.Country.INDIA, INDIA_STATE_CODE_CSV_FILE_PATH,INDIA_STATE_CODE_CSV_FILE_PATH);
             Assert.assertEquals(37, numberOfRecords);
-        } catch (CensusAnalyserException e) {
-        }
+        } catch (CensusAnalyserException e) { }
     }
 
     //To test for a wrong file path
@@ -218,8 +217,7 @@ public class CensusAnalyserTest {
             CensusAnalyser censusAnalyser = new CensusAnalyser();
             int numberOfRecords = censusAnalyser.loadCensusData(CensusAnalyser.Country.US, US_CENSUS_CSV_FILE_PATH);
             Assert.assertEquals(51, numberOfRecords);
-        } catch (CensusAnalyserException e) {
-        }
+        } catch (CensusAnalyserException e) { }
     }
 
     //To sort US census data by state from most populous one to the least one
@@ -231,7 +229,9 @@ public class CensusAnalyserTest {
             String sortedCensusData = censusAnalyser.getUSCensusStateWiseSortedData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
             Assert.assertEquals("Wyoming", usCensusCSV[0].state);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
     }
 
     //To sort US census data populationwise from most populous state to least one
@@ -243,7 +243,9 @@ public class CensusAnalyserTest {
             String sortedCensusData = censusAnalyser.getPopulationWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
             Assert.assertEquals(37253956, usCensusCSV[0].population);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
     }
 
     //To sort the US census data by population density from most populous to least populous one
@@ -255,7 +257,9 @@ public class CensusAnalyserTest {
             String sortedCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(sortedCensusData, USCensusCSV[].class);
             Assert.assertEquals("District of Columbia", usCensusCSV[0].state);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
     }
 
     // To sort the US census data areawise from most populous one to least populous
@@ -267,7 +271,9 @@ public class CensusAnalyserTest {
             String usCensusData = censusAnalyser.getStateAreaWiseSortedCensusData();
             USCensusCSV[] usCensusCSV = new Gson().fromJson(usCensusData, USCensusCSV[].class);
             Assert.assertEquals(1723338.01, usCensusCSV[0].totalArea, 1);
-        } catch (CensusAnalyserException e) { }
+        } catch (CensusAnalyserException e) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
     }
 
     //To find the most populous state in India and US census data on basis of population density
@@ -283,12 +289,8 @@ public class CensusAnalyserTest {
             String indiaCensusData = censusAnalyser.getStatePopulationDensityWiseSortedCensusData();
             IndiaCensusCSV[] indiaCensusCSV =  new Gson().fromJson(indiaCensusData, IndiaCensusCSV[].class);
             Assert.assertEquals("Bihar", indiaCensusCSV[0].state);
-        } catch (CensusAnalyserException e ) { }
+        } catch (CensusAnalyserException e ) {
+            Assert.assertEquals(CensusAnalyserException.ExceptionType.NO_CENSUS_DATA, e.type);
+        }
     }
 }
-
-
-
-
-
-

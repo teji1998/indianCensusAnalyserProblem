@@ -26,4 +26,3 @@ public class CensusDAO  {
 		totalArea = usCensusCSV.totalArea;
 	}
 }
-

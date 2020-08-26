@@ -5,7 +5,7 @@ public class CensusAnalyserException extends Exception {
         CENSUS_FILE_PROBLEM,
         INVALID_FILE_TYPE_OR_DELIMITER_OR_HEADER,
         NO_CENSUS_DATA,
-        NOT_A_VALID_COUNTRY;
+        NOT_A_VALID_COUNTRY
     }
 
     ExceptionType type;
@@ -25,4 +25,3 @@ public class CensusAnalyserException extends Exception {
         this.type = ExceptionType.valueOf(name);
     }
 }
-

@@ -6,10 +6,9 @@ import java.util.stream.Collectors;
 
 public class CensusAnalyser {
 
-    public enum Country { INDIA, US }
     Map<String, CensusDAO> censusMap;
 
-    public int loadCensusData(Country country, String... csvFilePath) throws CensusAnalyserException {
+    public int loadCensusData(CensusEnumCollection.Country country, String... csvFilePath) throws CensusAnalyserException {
 	    censusMap = new CensusLoader().loadCensusData(country, csvFilePath);
 	    return censusMap.size();
     }

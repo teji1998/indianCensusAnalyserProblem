@@ -1,11 +1,12 @@
 package censusanalyser;
 
 public class CensusDAO  {
-	public String stateCode;
 	public String state;
-	public int population;
-	public double populationDensity;
+	public String stateCode;
+	public String stateId;
 	public double totalArea;
+	public double populationDensity;
+	public int population;
 
 	public CensusDAO(IndiaCensusCSV indiaCensusCSV) {
 		state = indiaCensusCSV.state;
@@ -18,11 +19,11 @@ public class CensusDAO  {
 		stateCode = indiaStateCodeCSV.stateCode;
 	}
 
-	public CensusDAO(USCensusCSV usCensusCSV) {
-		state = usCensusCSV.state;
-		stateCode = usCensusCSV.stateId;
-		population = usCensusCSV.population;
-		populationDensity = usCensusCSV.populationDensity;
-		totalArea = usCensusCSV.totalArea;
+	public CensusDAO(USCensusCSV censusCSV) {
+		state = censusCSV.state;
+		stateId = censusCSV.stateId;
+		totalArea = censusCSV.totalArea;
+		populationDensity = censusCSV.populationDensity;
+		population = censusCSV.population;
 	}
 }

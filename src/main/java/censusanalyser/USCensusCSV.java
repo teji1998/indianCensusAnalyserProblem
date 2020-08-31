@@ -13,38 +13,21 @@ public class USCensusCSV {
 	@CsvBindByName(column = "Population", required = true)
 	public int population;
 
-	@CsvBindByName(column = "Housing units", required = true)
-	public int housingUnits;
-
 	@CsvBindByName(column = "Total area", required = true)
-	public float totalArea;
-
-	@CsvBindByName(column = "Water area", required = true)
-	public float waterArea;
-
-	@CsvBindByName(column = "Land area", required = true)
-	public float landArea;
+	public double totalArea;
 
 	@CsvBindByName(column = "Population Density", required = true)
-	public float populationDensity;
-
-	@CsvBindByName(column = "Housing Density", required = true)
-	public float housingDensity;
+	public double populationDensity;
 
 	@Override
 	public String toString() {
-		return "USCensusCSV{" +
-				"State Id='" + stateId + '\'' +
-				", State='" +  state + '\'' +
-				", Population='" + population + '\'' +
-				", Housing units='" + housingUnits + '\'' +
-				", Total area='" + totalArea + '\'' +
-				", Water area='" + waterArea + '\'' +
-				", Land area='" + landArea + '\'' +
-				", Population Density='" + populationDensity + '\'' +
-				", Housing Density='" + housingDensity + '\'' +
-				'}';
-
+		return "IndiaCensusCSV{" +
+				  "state='" + state + '\'' +
+				  ", population='" + population + '\'' +
+				  ", totalArea='" + totalArea + '\'' +
+				  ", populationDensity" + populationDensity +
+				  '}';
 	}
 }
+
 
